@@ -320,7 +320,9 @@ class EventManager implements EventManagerInterface
             foreach ($listOfListeners as $listeners) {
                 foreach ($listeners as $listener) {
                     $response = $listener($event);
-                    $responses->push($response);
+                    if($response) {
+                        $responses->push($response);
+                    }
 
                     // If the event was asked to stop propagating, do so
                     if ($event->propagationIsStopped()) {
